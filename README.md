@@ -1,3 +1,12 @@
+## 交作业
+[直方图](app/src/main/java/com/hencoder/hencoderpracticedraw1/practice/Practice10HistogramView.java)
+![直方图](screenshot/histogram.png)
+
+[饼图](app/src/main/java/com/hencoder/hencoderpracticedraw1/practice/Practice11PieChartView.java)
+![饼图](screenshot/pie_chart.png)
+
+------------------------------------
+
 ![](images/icon.png)
 
 HenCoder 绘制 1 练习项目
