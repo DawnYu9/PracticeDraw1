@@ -4,31 +4,36 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
 public class Practice10HistogramView extends View {
-    Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    Path path = new Path();
+    private Paint paint;
+    private int[] heights = {100, 200, 300, 400, 500};
+    private String[] names = {"a", "bb", "ccc", "dd", "ee"};
+    private int width = 100;
+    private int space = 20;
+    private int coordLength = 700;
+    private int originX = 100;
+    private int originY = 100 + coordLength;
 
     public Practice10HistogramView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public Practice10HistogramView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public Practice10HistogramView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
     }
 
-    {
-        path.moveTo(50, 50);
-        path.lineTo(50, 600);
-        path.lineTo(800, 600);
+    private void init() {
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     }
 
     @Override
@@ -40,23 +45,40 @@ public class Practice10HistogramView extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
 
+        // 移动原点
+        canvas.translate(originX, originY);
+
+        // 坐标系
         paint.setColor(Color.WHITE);
+        canvas.drawLine(0, 0, 0, -coordLength, paint);
+        canvas.drawLine(0, 0, coordLength, 0, paint);
 
-        canvas.drawPath(path, paint);
-
+        // 直方图
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.GREEN);
         paint.setTextSize(40);
 
-        canvas.drawRect(100, 550, 150, 600, paint);
-        canvas.drawText("1", 100, 650, paint);
-        canvas.drawRect(170, 400, 220, 600, paint);
-        canvas.drawText("2", 170, 650, paint);
-        canvas.drawRect(240, 300, 290, 600, paint);
-        canvas.drawText("3", 240, 650, paint);
-        canvas.drawRect(310, 100, 360, 600, paint);
-        canvas.drawText("4", 310, 650, paint);
-        canvas.drawRect(380, 200, 430, 600, paint);
-        canvas.drawText("5", 380, 650, paint);
+        float left = space;
+
+        for (int i = 0; i < heights.length; i++) {
+            canvas.drawRect(left, -heights[i], left + width, 0, paint);
+            float textLeft = left + (width - getTextBounds(names[i], paint).width()) / 2;
+            canvas.drawText(names[i], textLeft, 50, paint);
+
+            left += width + space;
+        }
+    }
+
+    /**
+     * 测量文字大小
+     *
+     * @param text
+     * @param paint
+     * @return
+     */
+    private Rect getTextBounds(String text, Paint paint) {
+        Rect rect = new Rect();
+        paint.getTextBounds(text, 0, text.length(), rect);
+        return rect;
     }
 }
