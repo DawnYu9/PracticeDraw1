@@ -18,9 +18,9 @@ public class Practice11PieChartView extends View {
     private static final int OFFSET_INDEX = 2;// 偏移的扇形
     private Paint arcPaint, linePaint, textPaint;
     private RectF rectF;
-    private String names[] = {"a", "bb", "ccc", "dddd", "eeeee"};
-    private int percents[] = {10, 20, 30, 25, 15};
-    private int colors[] = {Color.WHITE, Color.YELLOW, Color.BLUE, Color.GRAY, Color.GREEN};
+    private String[] names = {"a", "bb", "ccc", "dddd", "eeeee"};
+    private int[] percents = {10, 20, 30, 25, 15};
+    private int[] colors = {Color.WHITE, Color.YELLOW, Color.BLUE, Color.GRAY, Color.GREEN};
 
     public Practice11PieChartView(Context context) {
         this(context, null);

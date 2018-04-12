@@ -8,18 +8,19 @@ import android.util.AttributeSet;
 import android.view.View;
 
 public class Practice4DrawPointView extends View {
-    Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    Paint paint;
 
     public Practice4DrawPointView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public Practice4DrawPointView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public Practice4DrawPointView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     }
 
     @Override

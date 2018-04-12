@@ -9,22 +9,21 @@ import android.util.AttributeSet;
 import android.view.View;
 
 public class Practice9DrawPathView extends View {
-    Paint paint = new Paint();
-    Path path = new Path();
+    Paint paint;
+    Path path;
 
     public Practice9DrawPathView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public Practice9DrawPathView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public Practice9DrawPathView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    {
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        path = new Path();
         path.addArc(200, 200, 400, 400, -225, 225);
         path.arcTo(400, 200, 600, 400, -180, 225, false);
         path.lineTo(400, 542);
